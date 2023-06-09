@@ -36,3 +36,5 @@ class Device(models.Model):
 
 
 
+
+

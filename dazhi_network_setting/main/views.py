@@ -39,3 +39,6 @@ class UserAdd(CreateView):
 
 class UserList(ListView):
     model = User
+
+class Upload():
+    model = User
