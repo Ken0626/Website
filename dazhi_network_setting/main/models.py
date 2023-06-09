@@ -12,4 +12,8 @@ class User(models.Model):
 class Device(models.Model):
     d_name = models.CharField("裝置型號", max_length=25)
     owner = models.ForeignKey(User)
+    MAC = models.CharField("MAC" , max_length=20)
+
+
+
 
