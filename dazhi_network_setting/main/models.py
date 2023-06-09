@@ -15,3 +15,24 @@ class Device(models.Model):
     owner = models.ForeignKey(User, models.CASCADE)
     MAC = models.CharField("MAC" , max_length=20)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
