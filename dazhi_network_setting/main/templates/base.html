@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-hang">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+    <p>歡迎！ {{ user.username }}
+      <a href="{% url 'logout' %}">登出</a>
+    </p>
+    {% else %}
+    <p><a href="{% url 'login' %}">點此以登入</a></p>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>
