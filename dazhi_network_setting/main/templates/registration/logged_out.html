@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}您已登出！{% endblock %}
+
+{% block top_link %}{% url 'mainpage' %}{% endblock %}
+{% block top_message %}回前頁{% endblock %}
+
+{% block content %}
+<p>您已登出!!</p>  
+
+<a href="{% url 'login'%}">請按此處重新登入</a>
+{% endblock %}
