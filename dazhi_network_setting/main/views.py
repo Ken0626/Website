@@ -4,7 +4,7 @@ from .models import *
 # Create your views here.
 
 class Home(TemplateView):
-    template_name = 'home'
+    template_name = 'main/home.html'
 
 class DeviceAdd(CreateView):
     model = Device
