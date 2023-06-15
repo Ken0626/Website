@@ -13,7 +13,7 @@
         <p>我們的系統不僅僅是一個簡單的登錄平臺，而是為您提供了便利和效率的工具，讓您的日常操作更加順暢。我們注重用戶隱私和數據安全，採取了適當的措施來保護您的個人信息和設備數據。</p>
         {% if user.is_authenticated %}
         {% else %}
-        <a class="btn btn-primary btn-lg" href="/accounts/login/" role="button">登入了解更多>></a>
+        <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">登入了解更多>></a>
         {% endif %}
     </div>
     

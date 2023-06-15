@@ -9,23 +9,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class Home(TemplateView):
     template_name = 'main/home.html'
 
-class EditDevice_t(TemplateView):
-    template_name = 'main/device_edit_t.html'
+class DeviceHome(TemplateView):
+    template_name = 'main/device_home.html'
 
-class EditUser_t(TemplateView):
-    template_name = 'main/user_edit_t.html'
+class UserHome(TemplateView):
+    template_name = 'main/user_home.html'
 
 class DeviceAdd(LoginRequiredMixin, CreateView):
-    template_name = 'main/device_edit.html'
     model = Device
+    template_name = 'main/device_edit.html'
     fields = ["d_name" , "MAC"]
 
 class DeviceDetail(DetailView):
     model = Device
+    template_name = 'main/device_detail.html'
 
 class DeviceList(ListView):
-    template_name = 'main/device_list.html'
     model = Device
+    template_name = 'main/device_list.html'
 
 class DeviceDelete(LoginRequiredMixin, DeleteView):
     model = Device
@@ -47,8 +48,8 @@ class UserDelete(LoginRequiredMixin, DeleteView):
     model = User
 
 class UserAdd(LoginRequiredMixin, CreateView):
-    template_name = 'main/user_edit.html'
     model = User
+    template_name = 'main/user_edit.html'
     
 class UserList(LoginRequiredMixin, ListView):
     model = User
