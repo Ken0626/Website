@@ -8,11 +8,21 @@ from django.contrib.auth.models import User
 class Home(TemplateView):
     template_name = 'main/home.html'
 
+class EditDevice_t(TemplateView):
+    template_name = 'main/device_edit_t.html'
+
+class EditUser_t(TemplateView):
+    template_name = 'main/user_edit_t.html'
 class DeviceAdd(CreateView):
+    template_name = 'main/device_edit.html'
     model = Device
     fields = ["d_name" , "MAC"]
 
 class DeviceDetail(DetailView):
+    model = Device
+
+class DeviceList(ListView):
+    template_name = 'main/device_list.html'
     model = Device
 
 class DeviceDelete(DeleteView):
@@ -35,8 +45,9 @@ class UserDelete(DeleteView):
     model = User
 
 class UserAdd(CreateView):
+    template_name = 'main/user_edit.html'
     model = User
-
+    
 class UserList(ListView):
     model = User
 
