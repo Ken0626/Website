@@ -73,6 +73,7 @@ class UserAdd(LoginRequiredMixin, CreateView):
 
     
 class UserList(LoginRequiredMixin, ListView):
+    template_name = 'main/user_list.html'
     model = User
 
 class Upload(LoginRequiredMixin, FormView):
