@@ -22,5 +22,6 @@ urlpatterns = [
 
     path('DazhiNetwork/', include('main.urls')),
     path('', RedirectView.as_view(url='DazhiNetwork/')),
+    path('login', RedirectView.as_view(url='DazhiNetwork/')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

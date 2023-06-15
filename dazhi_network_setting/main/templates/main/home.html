@@ -11,8 +11,10 @@
         <p class="lead">歡迎來到我們的網路自動登入系統！我們為您帶來了一個方便、高效的解決方案，以簡化您的登錄和設備管理體驗 <i class="fas fa-light fa-smile-wink"></i></p>
         <hr class="my-4">
         <p>我們的系統不僅僅是一個簡單的登錄平臺，而是為您提供了便利和效率的工具，讓您的日常操作更加順暢。我們注重用戶隱私和數據安全，採取了適當的措施來保護您的個人信息和設備數據。</p>
+        {% if user.is_authenticated %}
+        {% else %}
         <a class="btn btn-primary btn-lg" href="/accounts/login/" role="button">登入了解更多>></a>
-        
+        {% endif %}
     </div>
     
     <!-- 格線系統Grid System -->

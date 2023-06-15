@@ -1,6 +1,7 @@
 from django.views.generic import *
 from .models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -13,7 +14,8 @@ class EditDevice_t(TemplateView):
 
 class EditUser_t(TemplateView):
     template_name = 'main/user_edit_t.html'
-class DeviceAdd(CreateView):
+
+class DeviceAdd(LoginRequiredMixin, CreateView):
     template_name = 'main/device_edit.html'
     model = Device
     fields = ["d_name" , "MAC"]
@@ -25,31 +27,31 @@ class DeviceList(ListView):
     template_name = 'main/device_list.html'
     model = Device
 
-class DeviceDelete(DeleteView):
+class DeviceDelete(LoginRequiredMixin, DeleteView):
     model = Device
 
 class GroupList(ListView):
     model = Group
 
-class GroupDelete(DeleteView):
+class GroupDelete(LoginRequiredMixin, DeleteView):
     model = Group
 
-class GroupCreate(CreateView):
+class GroupCreate(LoginRequiredMixin, CreateView):
     model = Group
     fields = ["g_name"]
 
-class UserDetail(DetailView):
+class UserDetail(LoginRequiredMixin, DetailView):
     model = User
 
-class UserDelete(DeleteView):
+class UserDelete(LoginRequiredMixin, DeleteView):
     model = User
 
-class UserAdd(CreateView):
+class UserAdd(LoginRequiredMixin, CreateView):
     template_name = 'main/user_edit.html'
     model = User
     
-class UserList(ListView):
+class UserList(LoginRequiredMixin, ListView):
     model = User
 
-class Upload():
+class Upload(LoginRequiredMixin, FormView):
     model = User
