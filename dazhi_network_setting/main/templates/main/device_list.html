@@ -1,9 +1,14 @@
 {% extends '../base.html' %}
 
+{% block title %} | 裝置清單{% endblock title %}
+
 {% block content %}
-<a class="btn btn-primary btn-lg" href="{% url 'd_list'%}" role="button">回到編輯裝置</a>
+
     <div class="container">
         <div class="row">
+            <div>
+                <a class="btn btn-primary btn-lg" href="{% url 'd_create'%}" role="button">回到編輯裝置</a>
+            <div>
             <div class="col">
             <br>
             <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 所有裝置清單</h1>

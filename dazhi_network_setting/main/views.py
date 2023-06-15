@@ -1,8 +1,12 @@
+import pyexcel as px
+
+from typing import Type
 from django.views.generic import *
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .forms import GetExcelForm
 
 # Create your views here.
 
@@ -17,8 +21,10 @@ class UserHome(TemplateView):
 
 class DeviceAdd(LoginRequiredMixin, CreateView):
     model = Device
-    template_name = 'main/device_edit.html'
+    template_name = 'main/device_create.html'
     fields = ["d_name" , "MAC"]
+
+    success_url = '../list/'
 
 class DeviceDetail(DetailView):
     model = Device
@@ -49,10 +55,30 @@ class UserDelete(LoginRequiredMixin, DeleteView):
 
 class UserAdd(LoginRequiredMixin, CreateView):
     model = User
-    template_name = 'main/user_edit.html'
+    template_name = 'main/user_create.html'
+    fields=['groups', 'username', 'first_name']
+
+    def get_form(self):
+        form = super().get_form()
+        for field in form.fields:
+            # if field == 'groups':
+            #     continue
+            form.fields[field].widget.attrs.update({'class': 'form-control'})
+        return form
+    
+    def form_vaild(self, form):
+        number = form.files['username']
+        form.instence.password
+        return super.form_vaild(form)
+
     
 class UserList(LoginRequiredMixin, ListView):
     model = User
 
 class Upload(LoginRequiredMixin, FormView):
-    model = User
+    template_name = 'form.html'
+    form_class = GetExcelForm
+
+    def get_form(self):
+        form = super().get_form()
+        return form

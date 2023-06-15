@@ -1,0 +1,61 @@
+{% extends '../base.html' %}
+
+{% block title %} | 新增用戶{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <br>
+            <h1 class="display-4"><i class="fas fa-light fa-users"></i> 輸入用戶資訊</h1>
+            <br>
+            <a class="btn btn-primary btn-lg" href="{% url 'form' %}" role="button">上傳學生與教師註冊活頁簿</a>
+            <a class="btn btn-primary btn-lg" href="list2.html" role="button">查看所有用戶</a>
+            <br>
+            <form method="post" action="">
+                <!-- <div class="form-group row">
+                <div class="col-3">
+                    {% csrf_token %}
+                    <table class="table">
+                        {{ form.as_table }}
+                    </table>
+                </div></div> -->
+                <!-- {% for item in form.fields.groups.choices %}
+                {{ item }}
+                {% endfor %} -->
+                <div class="form-group row">
+                <label for="uname" class="col-2 offset-1 col-form-label">姓名 ：</label>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="uname" name="first_name" placeholder="name">
+                    <small class="form-text">請輸入用戶的姓名</small>
+                </div>
+                </div>
+                <div class="form-group row">
+                <label for="id" class="col-2 offset-1 col-form-label">學號/教師代碼 ：</label>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="id" name="username" placeholder="identity">
+                    <small class="form-text">請輸入用戶的學號/教師代碼
+                    </small>
+                </div>
+                </div>
+                <div class="form-group row">
+                <label for="blongs" class="col-2 offset-1 col-form-label">所屬班級/單位 ：</label>
+                <div class="col-3">
+                    <select type="text" class="groups" id="belongs" name="groups" class="form-control">
+                        {% for item in form.fields.groups.choices %}
+                        <option value="{{ item.0 }}">{{ item.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <small class="form-text">請選取用戶的所屬班級/單位單位</small>
+                </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">查詢用戶</button>
+                <button type="submit" class="btn btn-primary">新增用戶</button>
+                <button type="submit" class="btn btn-primary">刪除用戶</button>
+                
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

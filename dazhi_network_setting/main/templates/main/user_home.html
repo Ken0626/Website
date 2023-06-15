@@ -1,4 +1,7 @@
 {% extends '../base.html' %}
+
+{% block title %} | 編輯用戶{% endblock title %}
+
     <!-- 大屏幕 -->
 {% block content %}
     <div class="jumbotron">
@@ -7,7 +10,7 @@
         <p class="lead">我們的編輯使用者功能旨在幫助管理員管理和維護用戶賬號和權限。我們致力於提供一個用戶友好的界面，讓您快速、便捷地進行操作。無論是修改現有用戶信息，還是添加新用戶或調整權限，都能夠高效完成。</p>
         <hr class="my-4">
         <p>立即體驗我們的網路自動登錄系統，享受編輯使用者功能帶來的便利和靈活性！</p>
-        <a class="btn btn-primary btn-lg" href="{% url 'u_edit' %}" role="button">開始編輯用戶>></a>
+        <a class="btn btn-primary btn-lg" href="{% url 'u_create' %}" role="button">開始編輯用戶>></a>
     </div>
     
     <!-- 格線系統Grid System -->

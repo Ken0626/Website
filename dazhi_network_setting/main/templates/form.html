@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} | 上傳活頁簿{% endblock title %}
+
+{% block content %}
+<div class="col-3">
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="上傳">
+</form>
+</div>
+
+<div>
+    <p>活頁簿範例格式如下</p>
+    <table border="1px">
+        <tr>
+            <td>學生/教師姓名</td>
+            <td>學號/教師代碼</td>
+            <td>所屬班級/單位</td>
+        </tr>
+
+        <tr>
+            <td>王小明</td>
+            <td>12345678</td>
+            <td>201</td>
+        </tr>
+
+        <tr>
+            <td>陳小華</td>
+            <td>22345678</td>
+            <td>102</td>
+        </tr>
+
+        <tr>
+            <td>美小麗</td>
+            <td>01345678</td>
+            <td>211</td>
+        </tr>
+    </table>
+    <p>以此類推</p>
+</div>
+{% endblock content %}
+
