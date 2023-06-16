@@ -107,7 +107,7 @@ class Upload(LoginRequiredMixin, FormView):
     #     return form
     
     def form_valid(self, form):
-        print("!!!!")
+        # print("!!!!")
         s = form.files['file']
         ext = s.name.split('.')[-1]
         content = s.read()
