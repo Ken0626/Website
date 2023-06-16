@@ -13,6 +13,7 @@
             <br>
             <form method="post" action="">
                 {% csrf_token %}
+                {% comment %} {{form.as_table}} {% endcomment %}
                 {% comment %} <div class="form-group row">
                     <label for="name" class="col-2 offset-1 col-form-label">使用者 =</label>
                     <div class="col-3">
@@ -28,7 +29,7 @@
                 <div class="form-group row">
                 <label for="model" class="col-2 offset-1 col-form-label">型號 ：</label>
                 <div class="col-3">
-                    <input type="text" class="form-control" id="model" name="d-name" placeholder="model_name">
+                    <input type="text" class="form-control" id="model" name="d_name" placeholder="model_name">
                     <small class="form-text">請輸入裝置的型號</small>
                 </div>
                 </div>
