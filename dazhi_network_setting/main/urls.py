@@ -12,4 +12,5 @@ urlpatterns = [
     path('device/number<int:pk>/delete/', DeviceDelete.as_view(), name='d_delete'),
     path('user/', UserHome.as_view(), name='u_home'),
     path('user/create/', UserAdd.as_view(), name='u_create'),
+    path('user/list/', UserList.as_view(), name='u_list'),
 ]
