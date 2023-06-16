@@ -1,5 +1,6 @@
 import pyexcel as px
 
+from django.http import HttpResponse
 from typing import Type
 from django.views.generic import *
 from .models import *
@@ -82,3 +83,7 @@ class Upload(LoginRequiredMixin, FormView):
     def get_form(self):
         form = super().get_form()
         return form
+    
+    def form_valid(self, form):
+        s = form.instance.file
+
