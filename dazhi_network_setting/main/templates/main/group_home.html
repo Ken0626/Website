@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+
+{% block title %} | 編輯裝置{% endblock title %}
+
+{% block content %}
+
+    <!-- 大屏幕 -->
+    <div class="jumbotron">
+
+        <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 編輯群組</h1>
+        <p class="lead">我們的群組編輯功能旨在幫助創建群組，您可以編輯群組來統一操作群組中的使用者，讓您的工作更加高效和便捷。</p>
+        <hr class="my-4">
+        <p>立即體驗我們的網路自動登錄系統，享受群組編輯功能帶來的便利和靈活性！</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'g_create' %}" role="button">開始編輯群組>></a>
+    </div>
+    
+    <!-- 格線系統Grid System -->
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <h4><i class="fas fa-light fa-user-tie"></i><strong> 編輯群組，</strong></h4>
+            您擁有權限來管理群組。通過管理員登錄後，您可以查看並編輯群組列表。您可以對群組進行修改、添加或刪除，確保數據的準確性和一致性。此外，作為管理員，您還可以對群組信息進行批量操作，節省時間和精力。<br><br><br></div>
+        </div>
+      </div>
+  
+  
+{% endblock content %}
+</html>

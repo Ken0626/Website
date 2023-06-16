@@ -1,0 +1,44 @@
+{% extends '../base.html' %}
+
+{% block title %} | 新增裝置{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <br>
+            <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 輸入裝置資訊</h1>
+            <br>
+            <a class="btn btn-primary btn-lg" href="{% url 'g_list'%}" role="button">查看所有群組</a>
+            <br>
+            <form method="post" action="">
+                {% csrf_token %}
+                {% comment %} <div class="form-group row">
+                    <label for="name" class="col-2 offset-1 col-form-label">使用者 =</label>
+                    <div class="col-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="device_name">
+                        <small class="form-text">請選取裝置的名稱</small>
+                    </div>
+                    <select type="text" class="groups" id="belongs" name="user" class="form-control">
+                        {% for item in form.fields.groups.choices %}
+                        <option value="{{ item.0 }}">{{ item.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div> {% endcomment %}
+                <div class="form-group row">
+                <label for="model" class="col-2 offset-1 col-form-label">群組名稱 ：</label>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="model" name="d-name" placeholder="model_name">
+                    <small class="form-text">請輸入群組的名字</small>
+                </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">查詢群組</button>
+                <input type="submit" class="btn btn-primary" value="新增群組">
+                <button type="submit" class="btn btn-primary">刪除群組</button>
+                
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

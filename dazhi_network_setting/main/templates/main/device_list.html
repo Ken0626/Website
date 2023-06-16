@@ -47,7 +47,17 @@
                 <ul class="navbar-nav">
                     {% for device in device_list %}
                         <li class="nav-item">
-                            {{ device.d_name }}
+                            {{ device.MAC }}
+                        </li>
+                    {%  endfor  %}
+                </ul>
+            </div>
+            <div class="col">
+                <h4><strong> 擁有者</strong></h4>
+                <ul class="navbar-nav">
+                    {% for device in device_list %}
+                        <li class="nav-item">
+                            {{ device.owner }}
                         </li>
                     {%  endfor  %}
                 </ul>
