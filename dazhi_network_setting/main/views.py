@@ -16,6 +16,9 @@ class Home(TemplateView):
 class DeviceHome(TemplateView):
     template_name = 'main/device_home.html'
 
+class GroupHome(TemplateView):
+    template_name = "main/group_home.html"
+
 class UserHome(TemplateView):
     template_name = 'main/user_home.html'
 
@@ -39,6 +42,7 @@ class DeviceDelete(LoginRequiredMixin, DeleteView):
 
 class GroupList(ListView):
     model = Group
+    template_name = 'main/group_list.html'
 
 class GroupDelete(LoginRequiredMixin, DeleteView):
     model = Group
@@ -46,6 +50,9 @@ class GroupDelete(LoginRequiredMixin, DeleteView):
 class GroupCreate(LoginRequiredMixin, CreateView):
     model = Group
     fields = ["g_name"]
+    template_name = 'main/group_create.html'
+
+
 
 class UserDetail(LoginRequiredMixin, DetailView):
     model = User

@@ -13,4 +13,7 @@ urlpatterns = [
     path('user/', UserHome.as_view(), name='u_home'),
     path('user/create/', UserAdd.as_view(), name='u_create'),
     path('user/list/', UserList.as_view(), name='u_list'),
-]
+    path('group/', GroupHome.as_view(), name='g_home'),
+    path('group/create/', GroupCreate.as_view(), name='g_create'),
+    path('group/list/', GroupList.as_view(), name='g_list'),
+]   

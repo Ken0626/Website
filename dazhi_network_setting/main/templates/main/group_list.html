@@ -1,0 +1,35 @@
+{% extends '../base.html' %}
+
+{% block title %} | 群組清單{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div>
+                <a class="btn btn-primary btn-lg" href="{% url 'g_create'%}" role="button">回到編輯用戶</a>
+            <div>
+            <div class="col">
+            <br>
+            <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 所有用戶清單</h1>
+            <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- 格線系統Grid System -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4><strong> 群組名稱</strong></h4>
+                <ul class="navbar-nav">
+                    {% for group in group_list %}
+                        <li class="nav-item">
+                            {{ group.g_name }}
+                        </li>
+                    {%  endfor  %}
+                </ul>
+            </div> 
+            
+
+{% endblock content %}
