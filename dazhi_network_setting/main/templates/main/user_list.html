@@ -43,12 +43,11 @@
             <div class="col">
                 <h4><strong> 所屬班級/單位</strong></h4>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        1
-                    </li>
-                    <li class="nav-item">
-                        2
-                    </li>
+                    {% for user in user_list %}
+                        <li class="nav-item">
+                            {{ user.identity }}
+                        </li>
+                    {%  endfor  %}
                 </ul>
             </div>
         </div>
