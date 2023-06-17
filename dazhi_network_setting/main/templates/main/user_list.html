@@ -35,7 +35,7 @@
                 <ul class="navbar-nav">
                     {% for user in user_list %}
                         <li class="nav-item">
-                            {{ user.identity }}
+                            {{ user.username }}
                         </li>
                     {%  endfor  %}
                 </ul>
@@ -45,7 +45,7 @@
                 <ul class="navbar-nav">
                     {% for user in user_list %}
                         <li class="nav-item">
-                            {{ user.identity }}
+                            {{ user.group }}
                         </li>
                     {%  endfor  %}
                 </ul>

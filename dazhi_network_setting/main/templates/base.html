@@ -34,12 +34,14 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'd_home' %}">編輯裝置</a>
             </li>
+            {% if user.is_superuser %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'u_home' %}">編輯用戶</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'g_home' %}">編輯群組</a>
             </li>
+            {% endif %}
             </ul>
             <div class="ml-auto">
                 <ul class="navbar-nav">
