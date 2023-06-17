@@ -5,23 +5,30 @@ from typing import Type
 from django.views.generic import *
 from .models import Device
 from django.contrib.auth.models import User, Group
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 
 from .forms import GetExcelForm
+
+# 限定管理員才允許操作的混成類別
+class SuperuserRequiredMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
 
 # Create your views here.
 
 class Home(TemplateView):
     template_name = 'main/home.html'
 
-class DeviceHome(TemplateView):
+class DeviceHome(LoginRequiredMixin, TemplateView):
     template_name = 'main/device_home.html'
 
-class GroupHome(TemplateView):
+class GroupHome(LoginRequiredMixin, TemplateView):
     template_name = "main/group_home.html"
 
-class UserHome(TemplateView):
+class UserHome(LoginRequiredMixin, TemplateView):
     template_name = 'main/user_home.html'
 
 class DeviceAdd(LoginRequiredMixin, CreateView):
@@ -35,25 +42,25 @@ class DeviceAdd(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
-class DeviceDetail(DetailView):
+class DeviceDetail(LoginRequiredMixin, DetailView):
     model = Device
     template_name = 'main/device_detail.html'
 
-class DeviceList(ListView):
+class DeviceList(LoginRequiredMixin, ListView):
     model = Device
     template_name = 'main/device_list.html'
 
-class DeviceDelete(LoginRequiredMixin, DeleteView):
+class DeviceDelete(SuperuserRequiredMixin, DeleteView):
     model = Device
 
-class GroupList(ListView):
+class GroupList(LoginRequiredMixin, ListView):
     model = Group
     template_name = 'main/group_list.html'
 
-class GroupDelete(LoginRequiredMixin, DeleteView):
+class GroupDelete(SuperuserRequiredMixin, DeleteView):
     model = Group
 
-class GroupCreate(LoginRequiredMixin, CreateView):
+class GroupCreate(SuperuserRequiredMixin, CreateView):
     model = Group
     fields = ["name"]
     template_name = 'main/group_create.html'
@@ -63,10 +70,10 @@ class GroupCreate(LoginRequiredMixin, CreateView):
 class UserDetail(LoginRequiredMixin, DetailView):
     model = User
 
-class UserDelete(LoginRequiredMixin, DeleteView):
+class UserDelete(SuperuserRequiredMixin, DeleteView):
     model = User
 
-class UserAdd(LoginRequiredMixin, CreateView):
+class UserAdd(SuperuserRequiredMixin, CreateView):
     model = User
     template_name = 'main/user_create.html'
     fields=['groups', 'username', 'first_name']
@@ -96,7 +103,7 @@ class UserList(LoginRequiredMixin, ListView):
     template_name = 'main/user_list.html'
     model = User
 
-class Upload(LoginRequiredMixin, FormView):
+class Upload(SuperuserRequiredMixin, FormView):
     template_name = 'form.html'
     form_class = GetExcelForm
     success_url = '../../'
