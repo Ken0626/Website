@@ -39,6 +39,8 @@ class DeviceAdd(LoginRequiredMixin, CreateView):
 class DeviceDetail(DetailView):
     model = Device
     template_name = 'main/device_detail.html'
+    def get_queryset(self):
+        return Device.objects.filter(id=self.kwargs['pk'])
 
 class DeviceList(ListView):
     model = Device
