@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Group(models.Model):
-    g_name = models.CharField("班級/群組", max_length=10)
+# class Group(models.Model):
+#     g_name = models.CharField("班級/群組", max_length=10)
 
 # class User(models.Model):
 #     name = models.CharField("使用者姓名", max_length=10)

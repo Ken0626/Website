@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from typing import Type
 from django.views.generic import *
 from .models import Device
-from .models import Group as Gp
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 

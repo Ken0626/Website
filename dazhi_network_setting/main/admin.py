@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Group, Device
+from .models import Device
 
 # Register your models here.
 
-admin.site.register(Group)
 admin.site.register(Device)
