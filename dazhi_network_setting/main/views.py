@@ -1,10 +1,11 @@
 import pyexcel as px
 
-from django.http import HttpResponse
-from typing import Type
-from django.views.generic import *
 from .models import Device
 from django.contrib.auth.models import User, Group
+
+from django.http import HttpResponse
+from django.urls import reverse_lazy
+from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 
 from .forms import GetExcelForm
@@ -77,6 +78,7 @@ class GroupCreate(SuperuserRequiredMixin, CreateView):
     fields = ["name"]
     template_name = 'main/group_create.html'
 
+    success_url = reverse_lazy('g_list')
 
 
 class UserDetail(LoginRequiredMixin, DetailView):
@@ -89,6 +91,8 @@ class UserAdd(SuperuserRequiredMixin, CreateView):
     model = User
     template_name = 'main/user_create.html'
     fields=['groups', 'username', 'first_name']
+
+    success_url = '../list/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

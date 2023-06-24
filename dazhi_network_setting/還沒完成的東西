@@ -1,0 +1,10 @@
+1. DeviceDetail裡面的各個欄位還沒有東西
+2. DeviceDelete還沒弄好
+3. 送出MAC位址時需要檢查格式是否正確(使用正則表示式 Regular Expression)
+4. 用戶可以自己更改密碼
+5. 管理員可以查看每一個用戶的密碼
+6. UserList裡面列出User所屬的Group
+7. 管理員對Group刪除和停權
+8. UserDetail、GroupDetail還沒動
+9. 用戶可以查看自己的UserDetail
+10. 管理可以對個別用戶進行操作
