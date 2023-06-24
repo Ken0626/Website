@@ -119,6 +119,12 @@ class UserList(LoginRequiredMixin, ListView):
     template_name = 'main/user_list.html'
     model = User
 
+class User_Device(LoginRequiredMixin, ListView):
+    template_name = 'main/user_device_list.html'
+    model = Device
+    def get_queryset(self):
+         return Device.objects.filter(owner_id=self.kwargs['pk'])
+
 class Upload(SuperuserRequiredMixin, FormView):
     template_name = 'form.html'
     form_class = GetExcelForm
