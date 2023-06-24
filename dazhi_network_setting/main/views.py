@@ -52,6 +52,16 @@ class DeviceList(LoginRequiredMixin, ListView):
     model = Device
     template_name = 'main/device_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["device_list"] = Device.objects.filter(owner__username = self.request.user.username)
+        return context
+    
+class DeviceListAll(SuperuserRequiredMixin, ListView):
+    model = Device
+    template_name = 'main/device_list.html'
+    
+
 class DeviceDelete(SuperuserRequiredMixin, DeleteView):
     model = Device
 

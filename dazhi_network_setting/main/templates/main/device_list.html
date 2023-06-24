@@ -60,7 +60,7 @@
                 <ul class="navbar-nav">
                     {% for device in device_list %}
                         <li class="nav-item">
-                            {{ device.owner }}
+                            {{ device.owner.first_name }} ： {{ device.owner}}
                         </li>
                     {%  endfor  %}
                 </ul>
