@@ -8,7 +8,7 @@
     <div class="row">
         <div>
             <br>
-            <a class="btn btn-primary btn-lg" href="{% url 'u_create'%}" role="button">回到編輯裝置</a>
+            <a class="btn btn-primary btn-lg" href="{% url 'd_create'%}" role="button">回到編輯裝置</a>
         <div>
         <div class="col">
         <br>
@@ -37,7 +37,7 @@
                 <ul class="navbar-nav">
                     {% for device in device_list %}
                         <li class="nav-item">
-                          <a href="{% url 'd_detail' device.id %}">
+                          <a href="{% url 'd_update' device.id %}">
                             {{ device.d_name }}
                           </a>
                         </li>

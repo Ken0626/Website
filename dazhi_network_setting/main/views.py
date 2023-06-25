@@ -43,11 +43,22 @@ class DeviceAdd(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
-class DeviceDetail(LoginRequiredMixin, DetailView):
+class DeviceUpdate(LoginRequiredMixin, UpdateView):
     model = Device
-    template_name = 'main/device_detail.html'
-    def get_queryset(self):
-        return Device.objects.filter(id=self.kwargs['pk'])
+    template_name = 'main/device_update.html'
+    fields = ["d_name" , "MAC"]
+
+    success_url = 'javascript:history.back()'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+# class DeviceDetail(LoginRequiredMixin, DetailView):
+#     model = Device
+#     template_name = 'main/device_detail.html'
+#     def get_queryset(self):
+#         return Device.objects.filter(id=self.kwargs['pk'])
 
 class DeviceList(LoginRequiredMixin, ListView):
     model = Device
@@ -77,12 +88,13 @@ class GroupCreate(SuperuserRequiredMixin, CreateView):
     model = Group
     fields = ["name"]
     template_name = 'main/group_create.html'
-
     success_url = reverse_lazy('g_list')
 
-
-class UserDetail(LoginRequiredMixin, DetailView):
-    model = User
+class GroupUpdate(SuperuserRequiredMixin,  UpdateView):
+    model = Group
+    fields = ["name"]
+    template_name = 'main/group_update.html'
+    success_url = reverse_lazy('g_list')
 
 class UserDelete(SuperuserRequiredMixin, DeleteView):
     model = User
@@ -98,8 +110,6 @@ class UserAdd(SuperuserRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["groups"] = Group.objects.all()
         return context
-    
-
     def get_form(self):
         form = super().get_form()
         for field in form.fields:
@@ -107,19 +117,37 @@ class UserAdd(SuperuserRequiredMixin, CreateView):
             #     continue
             form.fields[field].widget.attrs.update({'class': 'form-control'})
         return form
-    
     def form_vaild(self, form):
         user = form.save(commit=False)
         user.set_password(form.instance.username)
         return super().form_valid(form)
 
+class UserUpdate(LoginRequiredMixin, UpdateView):
+    template_name = 'main/user_update.html'
+    model = User
+    fields=['groups', 'username', 'first_name']
+    success_url = '../../list/'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["groups"] = Group.objects.all()
+        return context
 
+    def get_form(self):
+        form = super().get_form()
+        for field in form.fields:
+            form.fields[field].widget.attrs.update({'class': 'form-control'})
+        return form
+    
+    def form_vaild(self, form):
+        user = form.save(commit=False)
+        user.set_password(form.instance.username)
+        return super().form_valid(form)
     
 class UserList(LoginRequiredMixin, ListView):
     template_name = 'main/user_list.html'
     model = User
 
-class User_Device(LoginRequiredMixin, ListView):
+class UserDevice(LoginRequiredMixin, ListView):
     template_name = 'main/user_device_list.html'
     model = Device
     def get_queryset(self):

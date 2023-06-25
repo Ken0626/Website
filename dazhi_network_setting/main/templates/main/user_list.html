@@ -26,7 +26,7 @@
                 <ul class="navbar-nav">
                     {% for user in user_list %}
                         <li class="nav-item">
-                            <a href="{% url 'u_device' user.id%}">
+                            <a href="{% url 'u_update' user.id%}">
                             {{ user.first_name }}
                             </a>
                         </li>
@@ -48,7 +48,19 @@
                 <ul class="navbar-nav">
                     {% for user in user_list %}
                         <li class="nav-item">
-                            {{ user.group }}
+                            {{ user.Chosen_groups }}
+                        </li>
+                    {%  endfor  %}
+                </ul>
+            </div>
+            <div class="col">
+                <h4><strong> 裝置 </strong></h4>
+                <ul class="navbar-nav">
+                    {% for user in user_list %}
+                        <li class="nav-item">
+                            <a href="{% url 'u_device' user.id%}">
+                            查看裝置
+                            </a>
                         </li>
                     {%  endfor  %}
                 </ul>

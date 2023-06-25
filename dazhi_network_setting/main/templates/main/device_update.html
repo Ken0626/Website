@@ -1,6 +1,6 @@
 {% extends '../base.html' %}
 
-{% block title %} | 新增裝置{% endblock title %}
+{% block title %} | 更新裝置{% endblock title %}
 
 {% block content %}
     <div class="container">
@@ -9,11 +9,11 @@
             <br>
             <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 輸入裝置資訊</h1>
             <br>
-            <a class="btn btn-primary btn-lg" href="{% url 'd_list' %}" role="button">查看已註冊裝置</a>
-            {% if user.is_authenticated %}
+            <a class="btn btn-primary btn-lg" href="javascript:history.back()" role="button">回前頁</a>
+            {% comment %} {% if user.is_authenticated %}
             <a class="btn btn-primary btn-lg" href="{% url 'd_list_all'%}" role="button">查看所有已註冊裝置 (管理員專用)</a>
             <br>
-            {% endif %}
+            {% endif %} {% endcomment %}
             <br>
             <form method="post" action="">
                 {% csrf_token %}
@@ -33,22 +33,23 @@
                 <div class="form-group row">
                 <label for="model" class="col-2 offset-1 col-form-label">型號 ：</label>
                 <div class="col-3">
-                    <input type="text" class="form-control" id="model" name="d_name" placeholder="model_name">
-                    <small class="form-text">請輸入裝置的型號</small>
+                    <input type="text" class="form-control" id="model" name="d_name" placeholder="{{ device.d_name }}">
+                    <small class="form-text">請輸入新的裝置型號</small>
                 </div>
                 </div>
                 <div class="form-group row">
                 <label for="mac" class="col-2 offset-1 col-form-label">MAC位址 ：</label>
                 <div class="col-3">
-                    <input type="text" class="form-control" id="mac" name="MAC" placeholder="mac_address">
-                    <small class="form-text">請輸入裝置的區域網路位址<br>
+                    <input type="text" class="form-control" id="mac" name="MAC" placeholder="{{ device.MAC }}">
+                    <small class="form-text">請輸入新的裝置區域網路位址<br>
                         註：使用cmd(命令提示字元)並輸入 ipconfig/all 以查看當前裝置的實體位址</small>
                 </div>
             
                 </div>
                 
                 {% comment %} <button type="submit" class="btn btn-primary">查詢裝置</button> {% endcomment %}
-                <input type="submit" class="btn btn-primary" value="新增裝置">
+                <input type="submit" class="btn btn-primary" value="更新裝置">
+                <a class="btn btn-primary " href="{% url 'd_delete' device.id %}" role="button">刪除裝置</a>
                 {% comment %} <button type="submit" class="btn btn-primary">刪除裝置</button> {% endcomment %}
                 
             </form>

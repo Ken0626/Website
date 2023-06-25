@@ -8,7 +8,7 @@
         <div class="row">
             <div>
                 <br>
-                <a class="btn btn-primary btn-lg" href="{% url 'u_create'%}" role="button">回到編輯群組</a>
+                <a class="btn btn-primary btn-lg" href="{% url 'g_create'%}" role="button">回到編輯群組</a>
             <div>
             <div class="col">
             <br>
@@ -26,7 +26,9 @@
                 <ul class="navbar-nav">
                     {% for group in group_list %}
                         <li class="nav-item">
-                            {{ group.name }}
+                            <a href = "{% url 'g_update' group.id %}">
+                                {{ group.name }}
+                            </a>
                         </li>
                     {%  endfor  %}
                 </ul>

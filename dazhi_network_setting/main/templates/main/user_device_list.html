@@ -37,7 +37,7 @@
                 <ul class="navbar-nav">
                     {% for device in device_list %}
                         <li class="nav-item">
-                          <a href="{% url 'd_detail' device.id %}">
+                          <a href="{% url 'd_update' device.id %}">
                             {{ device.d_name }}
                           </a>
                         </li>
