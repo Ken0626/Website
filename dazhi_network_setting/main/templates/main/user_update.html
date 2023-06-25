@@ -37,11 +37,12 @@
                         <option value="{{ item.0 }}">{{ item.1 }}</option>
                         {% endfor %}
                     </select>
-                    <small class="form-text">請選取用戶的所屬班級/單位單位</small>
+                    <small class="form-text">請選取用戶新的所屬班級/單位</small>
                 </div>
                 </div>
                 
                 <input type="submit" class="btn btn-primary" value="更新用戶">
+                <a class="btn btn-primary" href="{% url 'u_delete' user.id%}" role="button">刪除用戶</a>
             </form>
             </div>
         </div>

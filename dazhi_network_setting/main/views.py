@@ -76,6 +76,7 @@ class DeviceListAll(SuperuserRequiredMixin, ListView):
 
 class DeviceDelete(SuperuserRequiredMixin, DeleteView):
     model = Device
+    # success_url = reverse_lazy('d_list')
 
 class GroupList(LoginRequiredMixin, ListView):
     model = Group
@@ -83,6 +84,8 @@ class GroupList(LoginRequiredMixin, ListView):
 
 class GroupDelete(SuperuserRequiredMixin, DeleteView):
     model = Group
+    template_name = 'main/group_confirm_delete.html'
+    success_url = '../list/'
 
 class GroupCreate(SuperuserRequiredMixin, CreateView):
     model = Group
@@ -98,6 +101,8 @@ class GroupUpdate(SuperuserRequiredMixin,  UpdateView):
 
 class UserDelete(SuperuserRequiredMixin, DeleteView):
     model = User
+    template_name = 'main/user_confirm_delete.html'
+    success_url = '../../list/'
 
 class UserAdd(SuperuserRequiredMixin, CreateView):
     model = User

@@ -18,9 +18,11 @@ urlpatterns = [
     path('user/list/', UserList.as_view(), name='u_list'),
     path('user/number<int:pk>/device/', UserDevice.as_view(), name='u_device'),
     path('user/number<int:pk>/update/', UserUpdate.as_view(), name='u_update'),
+    path('user/number<int:pk>/delete/', UserDelete.as_view(), name='u_delete'),
 
     path('group/', GroupHome.as_view(), name='g_home'),
     path('group/create/', GroupCreate.as_view(), name='g_create'),
     path('group/list/', GroupList.as_view(), name='g_list'),
     path('group/number<int:pk>/update',GroupUpdate.as_view(),name='g_update'),
+    path('group/number<int:pk>/delete',GroupDelete.as_view(),name='g_delete'),
 ]   
