@@ -32,7 +32,19 @@
                         </li>
                     {%  endfor  %}
                 </ul>
-            </div> 
+            </div>
+            <div class="col">
+                <h4><strong> 所屬人員</strong></h4>
+                <ul class="navbar-nav">
+                    {% for group in group_list %}
+                        <li class="nav-item">
+                            <a href = "{% url 'g_user' group.id %}">
+                                查看所屬人員
+                            </a>
+                        </li>
+                    {%  endfor  %}
+                </ul>
+            </div>  
             
 
 {% endblock content %}

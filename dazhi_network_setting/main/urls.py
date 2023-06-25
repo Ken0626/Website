@@ -23,6 +23,8 @@ urlpatterns = [
     path('group/', GroupHome.as_view(), name='g_home'),
     path('group/create/', GroupCreate.as_view(), name='g_create'),
     path('group/list/', GroupList.as_view(), name='g_list'),
+    path('group/number<int:pk>/user/', GroupUser.as_view(), name='g_user'),
     path('group/number<int:pk>/update',GroupUpdate.as_view(),name='g_update'),
     path('group/number<int:pk>/delete',GroupDelete.as_view(),name='g_delete'),
+    
 ]   

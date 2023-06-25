@@ -99,6 +99,12 @@ class GroupUpdate(SuperuserRequiredMixin,  UpdateView):
     template_name = 'main/group_update.html'
     success_url = reverse_lazy('g_list')
 
+class GroupUser(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'main/group_user_list.html'
+    def get_queryset(self):
+         return User.objects.filter(groups__id = self.kwargs['pk'])
+
 class UserDelete(SuperuserRequiredMixin, DeleteView):
     model = User
     template_name = 'main/user_confirm_delete.html'
