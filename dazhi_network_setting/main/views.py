@@ -71,7 +71,7 @@ class DeviceList(LoginRequiredMixin, ListView):
     
 class DeviceListAll(SuperuserRequiredMixin, ListView):
     model = Device
-    template_name = 'main/device_listall.html'
+    template_name = 'main/device_list_all.html'
     
 
 class DeviceDelete(SuperuserRequiredMixin, DeleteView):
@@ -102,8 +102,15 @@ class GroupUpdate(SuperuserRequiredMixin,  UpdateView):
 class GroupUser(SuperuserRequiredMixin, ListView):
     model = User
     template_name = 'main/group_user_list.html'
+
     def get_queryset(self):
          return User.objects.filter(groups__id = self.kwargs['pk'])
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["groups"] = Group.objects.filter(id = self.kwargs['pk'])
+        return context
+
 
 class UserDelete(SuperuserRequiredMixin, DeleteView):
     model = User

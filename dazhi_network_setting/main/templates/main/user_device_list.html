@@ -1,6 +1,10 @@
 {% extends '../base.html' %}
 
-{% block title %} | 裝置清單{% endblock title %}
+{% block title %} 
+|  {% for owner in owners %}
+{{ owner.first_name }} 的已註冊裝置清單
+{% endfor %}
+{% endblock title %}
 
 {% block content %}
 

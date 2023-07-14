@@ -8,11 +8,14 @@
     <div class="row">
         <div>
             <br>
-            <a class="btn btn-primary btn-lg" href="{% url 'u_list'%}" role="button">回到用戶清單</a>
+            <a class="btn btn-primary btn-lg" href="{% url 'g_list'%}" role="button">回到群組清單</a>
         <div>
         <div class="col">
         <br>
-        <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 所有裝置清單</h1>
+        <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 
+            {% for group in groups %}
+            {{ group }} 群組中的成員
+            {% endfor %}</h1>
         <br>
         </div>
     </div>
@@ -61,7 +64,9 @@
                         <ul class="navbar-nav">
                             {% for user in user_list %}
                                 <li class="nav-item">
-                                    {{ user.Chosen_groups }}
+                                    {% for group in user.groups.all %}
+                                        {{ group }}
+                                    {% endfor %}
                                 </li>
                             {%  endfor  %}
                         </ul>
