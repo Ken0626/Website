@@ -71,14 +71,14 @@ class DeviceList(LoginRequiredMixin, ListView):
     
 class DeviceListAll(SuperuserRequiredMixin, ListView):
     model = Device
-    template_name = 'main/device_list.html'
+    template_name = 'main/device_listall.html'
     
 
 class DeviceDelete(SuperuserRequiredMixin, DeleteView):
     model = Device
     # success_url = reverse_lazy('d_list')
 
-class GroupList(LoginRequiredMixin, ListView):
+class GroupList(SuperuserRequiredMixin, ListView):
     model = Group
     template_name = 'main/group_list.html'
 
@@ -99,7 +99,7 @@ class GroupUpdate(SuperuserRequiredMixin,  UpdateView):
     template_name = 'main/group_update.html'
     success_url = reverse_lazy('g_list')
 
-class GroupUser(LoginRequiredMixin, ListView):
+class GroupUser(SuperuserRequiredMixin, ListView):
     model = User
     template_name = 'main/group_user_list.html'
     def get_queryset(self):
@@ -161,8 +161,15 @@ class UserList(LoginRequiredMixin, ListView):
 class UserDevice(LoginRequiredMixin, ListView):
     template_name = 'main/user_device_list.html'
     model = Device
+    
     def get_queryset(self):
-         return Device.objects.filter(owner_id=self.kwargs['pk'])
+        return Device.objects.filter(owner_id=self.kwargs['pk'])
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["owners"] = User.objects.filter(id=self.kwargs['pk'])
+        return context
+    
 
 class Upload(SuperuserRequiredMixin, FormView):
     template_name = 'form.html'

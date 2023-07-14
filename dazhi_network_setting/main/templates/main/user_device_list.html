@@ -12,7 +12,11 @@
         <div>
         <div class="col">
         <br>
-        <h1 class="display-4"><i class="fas fa-light fa-laptop"></i> 所有裝置清單</h1>
+        <h1 class="display-4"><i class="fas fa-light fa-laptop"></i>
+            {% for owner in owners %}
+            {{ owner.first_name }} 的已註冊裝置
+            {% endfor %}
+            </h1>
         <br>
         </div>
     </div>

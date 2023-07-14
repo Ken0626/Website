@@ -48,7 +48,9 @@
                 <ul class="navbar-nav">
                     {% for user in user_list %}
                         <li class="nav-item">
-                            {{ user.Chosen_groups }}
+                            {% for group in user.groups.all %}
+                                {{ group }}
+                            {% endfor %}
                         </li>
                     {%  endfor  %}
                 </ul>
@@ -59,7 +61,7 @@
                     {% for user in user_list %}
                         <li class="nav-item">
                             <a href="{% url 'u_device' user.id %}">
-                            查看裝置
+                            查看已註冊裝置
                             </a>
                         </li>
                     {%  endfor  %}
