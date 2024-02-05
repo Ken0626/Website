@@ -44,13 +44,13 @@ class DeviceAdd(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
 
         # 使用 regular expression 匹配MAC位址是否正確
-        mac = form.fields["MAC"]
-        p1 = re.compile("\w{2}-\w{2}-\w{2}-\w{2}-\w{2}-\w{2}")
-        p2 = re.compile("\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}")
+        # mac = form.fields["MAC"]
+        # p1 = re.compile("\w{2}-\w{2}-\w{2}-\w{2}-\w{2}-\w{2}")
+        # p2 = re.compile("\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}")
 
-        if p1.match(mac) == None and p2.match(mac) == None:
-            form.add_error('MAC', 'MAC位址格式不正確！')
-            return super().form_invalid(form)
+        # if p1.match(mac) == None and p2.match(mac) == None:
+        #     form.add_error('MAC', 'MAC位址格式不正確！')
+        #     return super().form_invalid(form)
         
         return super().form_valid(form)
 
@@ -97,7 +97,7 @@ class GroupList(SuperuserRequiredMixin, ListView):
 class GroupDelete(SuperuserRequiredMixin, DeleteView):
     model = Group
     template_name = 'main/group/group_confirm_delete.html'
-    success_url = '../list/'
+    success_url = '../../list/'
 
 class GroupCreate(SuperuserRequiredMixin, CreateView):
     model = Group
@@ -148,11 +148,14 @@ class UserAdd(SuperuserRequiredMixin, CreateView):
             form.fields[field].widget.attrs.update({'class': 'form-control'})
         return form
     def form_vaild(self, form):
-        user = form.save(commit=False)
-        user.set_password(form.instance.username)
+        # user = form.save(commit=False)
+        # user.set_password(form.instance.username)
+        # user.save()
+        # form.instance = user
+        form.instance.password = form.instance.username
         return super().form_valid(form)
 
-class UserUpdate(LoginRequiredMixin, UpdateView):
+class UserUpdate(SuperuserRequiredMixin, UpdateView):
     template_name = 'main/user/user_update.html'
     model = User
     fields=['groups', 'username', 'first_name']
@@ -221,7 +224,7 @@ class Upload(SuperuserRequiredMixin, FormView):
             try:
                 user = User(first_name=sheet['學生/教師姓名'], 
                             username=sheet['學號/教師代碼'])
-                user.set_password(str(sheet['學號/教師代碼']))
+                user.set_password('dcsh'+ str(sheet['學號/教師代碼'])[-4:])
                 user.save()
                 user.groups.add(group)
             except:
